@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { selectCartItemCount } from '../../redux/cartSlice';
 import { useAppSelector } from '../../redux/hooks';
+import { CartIcon, ProductIcon, SearchIcon } from '../components/GeneralIcon';
 import CartScreen from '../screens/cart/CartScreen';
 import SearchScreen from '../screens/search/SearchScreen';
 import ProductStackNavigator from './ProductStackNavigator';
@@ -30,6 +30,9 @@ export default function HomeStackNavigator() {
         options={{
           title: 'Products',
           tabBarLabel: 'Products',
+          tabBarIcon: ({ color, size }) => (
+            <ProductIcon color={color} size={size} />
+          ),
         }}
       />
       <Tab.Screen
@@ -39,6 +42,7 @@ export default function HomeStackNavigator() {
           title: 'Cart',
           tabBarLabel: 'Cart',
           tabBarBadge: cartItemCount > 0 ? cartItemCount : undefined,
+          tabBarIcon: ({ color, size }) => <CartIcon color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -47,6 +51,9 @@ export default function HomeStackNavigator() {
         options={{
           title: 'Search',
           tabBarLabel: 'Search',
+          tabBarIcon: ({ color, size }) => (
+            <SearchIcon color={color} size={size} />
+          ),
         }}
       />
     </Tab.Navigator>
